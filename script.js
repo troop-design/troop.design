@@ -6,8 +6,21 @@ const secondaryColorValue = document.querySelector('.secondary .colorValue');
 
 let colorData = null;
 
+const setRandomColor = colors => {
+  const color = colors[Math.floor(Math.random() * colors.length)];
+
+  main.style.setProperty('--primary-color', color.color_one);
+  main.style.setProperty('--secondary-color', color.color_two);
+  setColorValues(color.color_one, color.color_two);
+};
+
+const setColorValues = (colorOne, colorTwo) => {
+  primaryColorValue.textContent = colorOne;
+  secondaryColorValue.textContent = colorTwo;
+};
+
 fetch('https://randoma11y.com/stats/')
-  .then(response => {return response.json();})
+  .then(response => response.json())
   .then(data => {
     colorData = data.latest_20.concat(data.most_active_20);
     setRandomColor(colorData);
@@ -18,17 +31,5 @@ fetch('https://randoma11y.com/stats/')
     main.style.setProperty('--secondary-color', '#000');
     setColorValues('#ffffff', '#000000');
   });
-
-const setRandomColor = colors => {
-  const color = colors[Math.round(Math.random() * colors.length)];
-  main.style.setProperty('--primary-color', color.color_one);
-  main.style.setProperty('--secondary-color', color.color_two);
-  setColorValues(color.color_one, color.color_two);
-};
-
-const setColorValues = (colorOne, colorTwo) => {
-  primaryColorValue.textContent = colorOne;
-  secondaryColorValue.textContent = colorTwo;
-};
 
 document.body.addEventListener('click', () => {setRandomColor(colorData)});
