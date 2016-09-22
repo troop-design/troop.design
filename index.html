@@ -6,55 +6,7 @@
     <meta name="author" content="" />
     <meta name="viewport" content="width=device-width">
     <title>troop</title>
-    <style type="text/css">
-      html, body {
-        padding: 0;
-        margin: 0;
-      }
-      .main {
-        display: flex;
-        height: 100vh;
-        width: 100vw;
-        font-family: 'Lucida Grande', Arial, sans-serif;
-        font-size: 10px;
-        --primary-color: #fff;
-        --secondary-color: #fff;
-      }
-      .primary, .secondary {
-        position: relative;
-        width: 50%;
-        padding: 0 10vw;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-      .colorValue {
-        position: absolute;
-        bottom: 1em;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
-      }
-      .primary {
-        background-color: var(--primary-color);
-      }
-      .primary svg g {
-        fill: var(--secondary-color);
-      }
-      .primary .colorValue {
-        color: var(--secondary-color);
-      }
-      .secondary {
-        background-color: var(--secondary-color);
-      }
-      .secondary svg g{
-        fill: var(--primary-color);
-      }
-      .secondary .colorValue {
-        color: var(--primary-color);
-      }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <main class="main">
@@ -67,41 +19,6 @@
       <span class="colorValue"></span>
       </div>
     </main>
-    <script>
-      "use strict";
-
-      const main = document.querySelector('.main');
-      const primaryColorValue = document.querySelector('.primary .colorValue');
-      const secondaryColorValue = document.querySelector('.secondary .colorValue');
-
-      let colorData = null;
-
-      fetch('https://randoma11y.com/stats/')
-        .then(response => {return response.json();})
-        .then(data => {
-          colorData = data.latest_20.concat(data.most_active_20);
-          setRandomColor(colorData);
-        })
-        .catch(err => {
-          console.log('Error:', err);
-          main.style.setProperty('--primary-color', '#fff');
-          main.style.setProperty('--secondary-color', '#000');
-          setColorValues('#ffffff', '#000000');
-        });
-
-        const setRandomColor = colors => {
-          const color = colors[Math.round(Math.random() * colors.length)];
-          main.style.setProperty('--primary-color', color.color_one);
-          main.style.setProperty('--secondary-color', color.color_two);
-          setColorValues(color.color_one, color.color_two);
-        };
-
-        const setColorValues = (colorOne, colorTwo) => {
-          primaryColorValue.textContent = colorOne;
-          secondaryColorValue.textContent = colorTwo;
-        };
-
-        document.body.addEventListener('click', () => {setRandomColor(colorData)});
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
