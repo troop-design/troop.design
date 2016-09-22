@@ -80,7 +80,7 @@
         .then(response => {return response.json();})
         .then(data => {
           colorData = data.latest_20.concat(data.most_active_20);
-          setColor(colorData);
+          setRandomColor(colorData);
         })
         .catch(err => {
           console.log('Error:', err);
@@ -89,7 +89,7 @@
           setColorValues('#ffffff', '#000000');
         });
 
-        const setColor = colors => {
+        const setRandomColor = colors => {
           const color = colors[Math.round(Math.random() * colors.length)];
           main.style.setProperty('--primary-color', color.color_one);
           main.style.setProperty('--secondary-color', color.color_two);
@@ -100,6 +100,8 @@
           primaryColorValue.textContent = colorOne;
           secondaryColorValue.textContent = colorTwo;
         };
+
+        document.body.addEventListener('click', () => {setRandomColor(colorData)});
     </script>
 </body>
 </html>
