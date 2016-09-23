@@ -32,4 +32,6 @@ fetch('https://randoma11y.com/stats/')
     setColorValues('#ffffff', '#000000');
   });
 
-document.body.addEventListener('click', () => {setRandomColor(colorData)});
+primaryColorValue.addEventListener('click', e => e.stopPropagation());
+secondaryColorValue.addEventListener('click', e => e.stopPropagation());
+main.addEventListener('click', () => {setRandomColor(colorData)});
