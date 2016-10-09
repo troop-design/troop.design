@@ -11,8 +11,8 @@ html, body {
   width: 100vw;
   font-family: 'Lucida Grande', Arial, sans-serif;
   font-size: 10px;
-  --primary-color: #fff;
-  --secondary-color: #fff;
+  --primary-color: #FAFAFA;
+  --secondary-color: #111;
 }
 .primary, .secondary {
   position: relative;
@@ -22,6 +22,10 @@ html, body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+.svg svg {
+  display: block;
+  margin: 0 auto;
 }
 .colorValue {
   position: absolute;
@@ -33,7 +37,7 @@ html, body {
 .primary {
   background-color: var(--primary-color);
 }
-.primary svg g {
+.primary svg path {
   fill: var(--secondary-color);
 }
 .primary .colorValue {
@@ -42,7 +46,7 @@ html, body {
 .secondary {
   background-color: var(--secondary-color);
 }
-.secondary svg g{
+.secondary svg path {
   fill: var(--primary-color);
 }
 .secondary .colorValue {
